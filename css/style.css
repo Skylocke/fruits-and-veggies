@@ -1,1 +1,9 @@
 /* file for your css */
+.col-sm-4 {
+  text-align: center;
+}
+.well {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
