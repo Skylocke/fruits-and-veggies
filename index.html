@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="fruitgetables">
     <head>
         <title>Fruit and Veggies</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
@@ -10,16 +10,16 @@
         <script src="js/app.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container" ng-controller="fvcontroller">
             <h1>Fruit and Veggies</h1>
             <div class="row">
                 <div class="col-sm-4">
                   <h2>fruits</h2>
                   <ul class="list-unstyled">
-                    <li>
-                      <div class="well">
-                        <span></span>
-                        <button class="return-middle btn btn-primary">
+                    <li ng-repeat="item in fruitBasket track by $index">
+                      <div ng-class="{ 'wrong': item.wrong, 'correct': item.correct }" class="well">
+                        <span>{{item.name}}</span>
+                        <button ng-click="returnFruit($index)" class="return-middle btn btn-primary">
                           <span class="glyphicon glyphicon-arrow-right"></span>
                         </button>
                       </div>
@@ -29,13 +29,13 @@
                 <div class="col-sm-4">
                     <h2>fruits and veggies</h2>
                     <ul class="list-unstyled">
-                      <li>
+                      <li ng-hide="hideProduce" ng-repeat="item in produceBasket track by $index">
                         <div class="well">
-                          <button class="return-middle btn btn-primary">
+                          <button ng-click="moveToFruits($index);" class="return-middle btn btn-primary">
                             <span class="glyphicon glyphicon-arrow-left"></span>
                           </button>
-                          <span>what</span>
-                          <button class="return-middle btn btn-primary">
+                          <span>{{item.name}}</span>
+                          <button ng-click="moveToVeggies($index);" class="return-middle btn btn-primary">
                             <span class="glyphicon glyphicon-arrow-right"></span>
                           </button>
                         </div>
@@ -45,13 +45,13 @@
                 <div class="col-sm-4">
                     <h2>veggies</h2>
                     <ul class="list-unstyled">
-                      <li>
-                        <div class="well">
-                          <button class="return-middle btn btn-primary">
+                      <li ng-repeat="item in veggieBasket track by $index">
+                        <div ng-class="{ 'wrong': item.wrong, 'correct': item.correct }" class="well">
+                          <button ng-click="returnVeggie($index)" class="return-middle btn btn-primary">
                             <span class="glyphicon glyphicon-arrow-left"></span>
                           </button>
+                          <span>{{item.name}}</span>
                         </div>
-                        <span></span>
                       </li>
                     </ul>
                 </div>
